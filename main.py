@@ -75,7 +75,7 @@ class Comment(db.Model, Base):
     post = db.relationship("BlogPost", back_populates='comments')
 
 
-# db.create_all()
+db.create_all()
 def email_to_hash(email):
     hashed_email = hashlib.md5(email.encode())
     return hashed_email.hexdigest()

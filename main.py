@@ -156,12 +156,12 @@ def logout():
 def show_post(post_id):
     form = CommentForm()
     requested_post = BlogPost.query.get(post_id)
-    if request.method == "POST" and form.validate_on_submit():
+    if request.method == "POST" and form.validate_on_submit() and current_user.is_authenticated:
         new_comment = Comment(text=form.comment.data, author_id=current_user.id)
         db.session.add(new_comment)
         db.session.commit()
     comments = Comment.query.all()
-    return render_template("post.html", post=requested_post, user_id=current_user.id, form=form, comments=comments)
+    return render_template("post.html", post=requested_post, form=form, comments=comments)
 
 
 @app.route("/about")

@@ -45,7 +45,7 @@
                     <div class="commenterImage">
                       <img src="https://www.gravatar.com/avatar/{{ comment.author.hashed_email }}"/>
                     </div>
-                      <h3>{{ comment.author_id|safe }}</h3>
+                      <p>{{ comment.author.name|safe }}</p>
                     <div class="commentText">
                       <p>{{ comment.text|safe }}</p>
                     </div>

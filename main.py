@@ -14,13 +14,14 @@ from urllib.parse import urlparse, urljoin
 from functools import wraps
 from flask_ckeditor import CKEditor
 import hashlib
+import os
 
 
 Base = declarative_base()
 
 login_manager = LoginManager()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ['secret_key']
 ckeditor = CKEditor(app)
 Bootstrap(app)
 login_manager.init_app(app)

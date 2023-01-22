@@ -16,7 +16,6 @@ from flask_ckeditor import CKEditor
 import hashlib
 import os
 
-
 Base = declarative_base()
 
 login_manager = LoginManager()

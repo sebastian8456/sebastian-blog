@@ -26,7 +26,7 @@ Bootstrap(app)
 login_manager.init_app(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///instance/blog.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -153,7 +153,6 @@ def logout():
 
 
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
-@login_required
 def show_post(post_id):
     form = CommentForm()
     requested_post = BlogPost.query.get(post_id)

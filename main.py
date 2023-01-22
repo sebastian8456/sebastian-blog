@@ -20,13 +20,13 @@ Base = declarative_base()
 
 login_manager = LoginManager()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ['secret_key']
+app.config['SECRET_KEY'] = os.environ.get('secret_key')
 ckeditor = CKEditor(app)
 Bootstrap(app)
 login_manager.init_app(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

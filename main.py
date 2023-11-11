@@ -17,10 +17,6 @@ from dotenv import load_dotenv
 import hashlib
 import os
 
-# TODO: Secure secret_key on line 26 with environment variables. Use os.getenv() to get environment variables from a .env file!
-# TODO: Use PostgreSQL DB. video 551 in 100 days of code is about setting up postgreSQL DB for permanent DB.
-# TODO: Publish the site on the web
-# TODO: Create blog posts
 
 Base = declarative_base()
 

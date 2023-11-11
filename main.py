@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request, abort, g
+from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
 from datetime import date
@@ -16,17 +16,22 @@ from flask_ckeditor import CKEditor
 import hashlib
 import os
 
+# TODO: Secure secret_key on line 26 with environment variables
+# TODO: Use PostgreSQL DB. video 551 in 100 days of code is about setting up postgreSQL DB for permanent DB.
+# TODO: Publish the site on the web
+# TODO: Create blog posts
+
 Base = declarative_base()
 
 login_manager = LoginManager()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('secret_key')
+app.config['SECRET_KEY'] = 'fse4234324' # NOT SECURE!! - use environment variables
 ckeditor = CKEditor(app)
 Bootstrap(app)
 login_manager.init_app(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///instance/blog.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -75,7 +80,6 @@ class Comment(db.Model, Base):
     post = db.relationship("BlogPost", back_populates='comments')
 
 
-# db.create_all()
 def email_to_hash(email):
     hashed_email = hashlib.md5(email.encode())
     return hashed_email.hexdigest()
@@ -228,4 +232,5 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
+    db.create_all()
     app.run(host='0.0.0.0', port=5000, debug=True)

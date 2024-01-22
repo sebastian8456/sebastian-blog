@@ -19,7 +19,7 @@ import os
 
 Base = declarative_base()
 
-load_dotenv()
+#load_dotenv()
 
 login_manager = LoginManager()
 app = Flask(__name__)

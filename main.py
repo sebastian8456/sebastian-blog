@@ -13,7 +13,6 @@ from flask_gravatar import Gravatar
 from urllib.parse import urlparse, urljoin
 from functools import wraps
 from flask_ckeditor import CKEditor
-from dotenv import load_dotenv
 import hashlib
 import os
 

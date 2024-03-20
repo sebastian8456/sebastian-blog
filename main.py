@@ -49,10 +49,10 @@ class BlogPost(db.Model, Base):
     __tablename__ = "blog_posts"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(250), unique=True, nullable=False)
-    subtitle = db.Column(db.String(250), nullable=False)
+    subtitle = db.Column(db.String(250), nullable=True)
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
-    img_url = db.Column(db.String(250), nullable=False)
+    img_url = db.Column(db.String(250), nullable=True)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     author = db.relationship("User", back_populates="blogposts")
     comments = db.relationship("Comment")
